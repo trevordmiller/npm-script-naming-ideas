@@ -20,14 +20,9 @@ Ideas for `package.json` npm script naming
 
 _Run the main process(es) for developing_
 
-Website example:
-```
-"dev": "next",
-```
-
 Web app example:
 ```
-"dev": "react-scripts start",
+"dev": "next",
 ```
 
 Service example:
@@ -80,19 +75,14 @@ General example:
 
 _Create a transpiled directory from source files_
 
-Website example:
+Web app example:
 ```
 "build": "next build",
 ```
 
-Web app example:
-```
-"build": "react-scripts build",
-```
-
 Library example:
 ```
-"build": "babel src -d build",
+"build": "babel src -d build -i '**/*.test.js'",
 ```
 
 # `release`
