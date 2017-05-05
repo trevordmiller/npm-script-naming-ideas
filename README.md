@@ -2,113 +2,80 @@
 
 Ideas for `package.json` npm script naming
 
+## Template
+
 ```
-{
-  "scripts": {
-    "dev": "...",
-    "verify": "...",
-    "test": "...",
-    "lint": "...",
-    "build": "...",
-    "release": "...",
-    "start": "..."
-  }
+"scripts": {
+  "dev": "main process(es) for developing",
+  "test:watch": "run tests in watch mode",
+  "verify": "verify things are working as expected (helpful to run on CI)",
+  "test": "run tests",
+  "lint": "run linting",
+  "build": "create a production build",
+  "release": "publish the latest version",
+  "start": "start production process(es)"
 }
 ```
 
-# `dev`
+## Examples
 
-_Run the main process(es) for developing_
+### Library
 
-Web app example:
 ```
-"dev": "next",
-```
-
-Service example:
-```
-"dev:build": "yarn build -- --watch",
-"dev:server": "nodemon build/index.js",
-"dev:test: "yarn test -- --watch",
-```
-
-Library example: 
-```
-"dev:build": "yarn build -- --watch",
-"dev:test": "yarn test -- --watch",
+"scripts": {
+  "dev": "yarn build -- --watch",
+  "test:watch": "yarn test -- --watch",
+  "verify": "yarn test && yarn lint && yarn build",
+  "test": "jest src",
+  "lint": "eslint src",
+  "build": "babel src -d build -i '**/*.test.js'",
+  "release": "git checkout master && git pull && yarn build && yarn version && git push && git push --tags && npm publish"
+}
 ```
 
-Desktop app example:
+### Web App
+
 ```
-"dev:build": "BROWSER=none node scripts/start.js",
-"dev:server": "electron .",
-```
-
-# `verify`
-
-_Verify things are working as expected (helpful to run on CI)_
-
-General example:
-```
-"verify": "yarn test && yarn lint && yarn build",
-```
-
-# `test`
-
-_Run tests_
-
-General example:
-```
-"test": "jest src",
+"scripts": {
+  "dev": "next",
+  "test:watch": "yarn test -- --watch",
+  "verify": "yarn test && yarn lint && yarn build",
+  "test": "jest .",
+  "lint": "eslint .",
+  "build": "next build",
+  "stage": "git checkout master && git pull && now",
+  "release": "now alias",
+  "start": "next start"
+}
 ```
 
-# `lint`
+### Service
 
-_Run linter_
-
-General example:
 ```
-"lint": "eslint src",
-```
-
-# `build`
-
-_Create a transpiled directory from source files_
-
-Web app example:
-```
-"build": "next build",
+"scripts": {
+  "dev": "nodemon --exec micro",
+  "test:watch": "yarn test -- --watch",
+  "verify": "yarn test && yarn lint",
+  "test": "jest .",
+  "lint": "eslint .",
+  "stage": "git checkout master && git pull && now",
+  "release": "now alias",
+  "start": "micro"
+}
 ```
 
-Library example:
-```
-"build": "babel src -d build -i '**/*.test.js'",
-```
+## Related CONTRIBUTING.md
 
-# `release`
+This `CONTRIBUTING.md` will work for any of the examples since it uses the npm script template:
 
-_Publish a release_
+```
+# Contributing
 
-Website/web app/service example:
-```
-"release": "git checkout master && git pull && now",
-```
-
-Library example: 
-```
-"release": "git checkout master && git pull && yarn build && yarn version && git push && git push --tags && yarn publish"
-```
-
-Desktop app example:
-```
-"release": "git checkout master && git pull && yarn build && yarn version && git push && git push --tags && yarn icns && yarn bundle && yarn dmg"
-```
-
-# `start`
-
-_Start a production service like an API_
-
-Service example:
-```
-"start": "node build/index.js"
+- Ensure you have [Git](https://git-scm.com/), [Node](https://nodejs.org), and [Yarn](https://yarnpkg.com) installed on your machine
+- Run `yarn` to install libraries
+- Run `yarn dev` to develop
+- Run `yarn test:watch` to update tests
+- Submit a pull request to `master`
+- Continuous Integration runs `yarn verify` to ensure things are working as expected
+- An admin merges your pull request into `master` and releases a new version
 ```
