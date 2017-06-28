@@ -23,13 +23,13 @@ Ideas for `package.json` npm script naming
 
 ```
 "scripts": {
-  "dev": "yarn build -- --watch",
-  "test:watch": "yarn test -- --watch",
-  "verify": "yarn test && yarn lint && yarn build",
+  "dev": "npm run build -- --watch",
+  "test:watch": "npm test -- --watch",
+  "verify": "npm test && npm run lint && npm run build",
   "test": "jest src",
   "lint": "eslint src",
   "build": "babel src -d build -i '**/*.test.js'",
-  "release": "git checkout master && git pull && yarn build && yarn version && git push && git push --tags && npm publish"
+  "release": "git checkout master && git pull && npm run build && npm version && git push && git push --tags && npm publish"
 }
 ```
 
@@ -38,8 +38,8 @@ Ideas for `package.json` npm script naming
 ```
 "scripts": {
   "dev": "next",
-  "test:watch": "yarn test -- --watch",
-  "verify": "yarn test && yarn lint && yarn build",
+  "test:watch": "npm test -- --watch",
+  "verify": "npm test && npm run lint && npm run build",
   "test": "jest .",
   "lint": "eslint .",
   "build": "next build",
@@ -54,8 +54,8 @@ Ideas for `package.json` npm script naming
 ```
 "scripts": {
   "dev": "nodemon --exec micro",
-  "test:watch": "yarn test -- --watch",
-  "verify": "yarn test && yarn lint",
+  "test:watch": "npm test -- --watch",
+  "verify": "npm test && npm run lint",
   "test": "jest .",
   "lint": "eslint .",
   "stage": "git checkout master && git pull && now",
@@ -71,11 +71,11 @@ This `CONTRIBUTING.md` will work for any of the examples since it uses the npm s
 ```
 # Contributing
 
-- Ensure you have [Git](https://git-scm.com/), [Node](https://nodejs.org), and [Yarn](https://yarnpkg.com) installed on your machine
-- Run `yarn` to install libraries
-- Run `yarn dev` to develop
-- Run `yarn test:watch` to update tests
+- Ensure you have the latest versions of [Git](https://git-scm.com/) and [Node + npm](https://nodejs.org) installed
+- Run `npm install` to install libraries
+- Run `npm run dev` to develop
+- Run `npm test:watch` to update tests
 - Submit a pull request to `master`
-- Continuous Integration runs `yarn verify` to ensure things are working as expected
+- Continuous Integration runs `npm run verify` to ensure things are working as expected
 - An admin merges your pull request into `master` and releases a new version
 ```
