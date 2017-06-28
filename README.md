@@ -12,7 +12,8 @@ Ideas for `package.json` npm script naming
   "test": "run tests",
   "lint": "run linting",
   "build": "create a production build",
-  "release": "publish the latest version",
+  "stage": "publish the latest version to a test environment",
+  "release": "publish the latest version to production",
   "start": "start production process(es)"
 }
 ```
